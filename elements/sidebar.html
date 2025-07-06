@@ -5,7 +5,30 @@
 
 <div class="sidebar">
     <img src="img/logo.png" alt="logo" class="logo">
-    <a class="active" href="index.html">Home</a>
-    <a href="form.html">Contact</a>
-    <a href="about.html">About</a>
+    
+    <!-- Links para usuários não logados -->
+    <div id="guest-menu">
+        <a href="login.html">Login</a>
+        <a href="register.html">Cadastre-se</a>
+    </div>
+    
+    <!-- Links para usuários logados -->
+    <div id="user-menu" style="display: none;">
+        <a href="clientes.html">Clientes</a>
+        <a href="pecas.html">Peças</a>
+        <a href="equipamentos.html">Equipamentos</a>
+        <a href="#" onclick="logout()">Logout</a>
+    </div>
+    
+    <!-- Links sempre visíveis -->
+    <a class="active" href="index.html">Principal</a>
+    <a href="form.html">Contato</a>
+    <a href="about.html">Sobre nós</a>
+    
+    <!-- Nome do usuário logado -->
+    <div id="user-info" style="display: none; position: absolute; bottom: 20px; color: white; font-size: 14px;">
+        Usuário: <span id="username-display"></span>
+    </div>
 </div>
+
+

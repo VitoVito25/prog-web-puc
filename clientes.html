@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Clientes - Vito's Form</title>
+    <link rel="stylesheet" href="css/common/import.css" type="text/css">
+    <link rel="stylesheet" href="css/clientes.css" type="text/css">
+    <link rel="icon" type="image/icon" href="img/favicon.ico">
+</head>
+
+<body>
+    <script>
+        // Verificar se o usuário está logado
+        fetch('php/check_session.php')
+            .then(response => response.json())
+            .then(data => {
+                if (!data.loggedin) {
+                    alert('Você precisa estar logado para acessar esta página.');
+                    window.location.href = 'login.html';
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao verificar sessão:', error);
+                window.location.href = 'login.html';
+            });
+    </script>
+    <div id="sidebar"></div>
+    <script src="scripts/sidebar.js"></script>
+
+    <div class="main-content">
+        <h1 class="title">Gerenciar Clientes</h1>
+        <p class="subtitle">Visualize e gerencie todos os clientes cadastrados</p>
+
+        <div class="actions">
+            <button id="addClientBtn" class="btn-primary">Adicionar Cliente</button>
+        </div>
+
+        <div class="table-container">
+            <table id="clientsTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Telefone</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="clientsTableBody">
+                    <!-- Dados serão carregados via PHP/AJAX -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal para adicionar/editar cliente -->
+    <div id="clientModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Adicionar Cliente</h2>
+            <form id="clientForm">
+                <input type="hidden" id="clientId" name="id">
+                
+                <div class="form-group">
+                    <label for="clientName">Nome:</label>
+                    <input type="text" id="clientName" name="nome" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="clientPhone">Telefone:</label>
+                    <input type="text" id="clientPhone" name="telefone">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Salvar</button>
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para visualizar equipamentos do cliente -->
+    <div id="equipmentModal" class="modal">
+        <div class="modal-content large">
+            <span class="close">&times;</span>
+            <h2 id="equipmentModalTitle">Equipamentos do Cliente</h2>
+            <div id="equipmentList">
+                <!-- Lista de equipamentos será carregada via AJAX -->
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/clientes.js"></script>
+</body>
+
+<footer>
+    <div id="footer"></div>
+    <script>
+        fetch('elements/footer.html')
+            .then(res => res.text())
+            .then(html => document.getElementById('footer').innerHTML = html);
+    </script>
+</footer>
+
+</html>
+

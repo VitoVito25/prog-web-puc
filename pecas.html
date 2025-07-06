@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Peças de Equipamentos - Vito's Form</title>
+    <link rel="stylesheet" href="css/common/import.css" type="text/css">
+    <link rel="stylesheet" href="css/pecas.css" type="text/css">
+    <link rel="icon" type="image/icon" href="img/favicon.ico">
+</head>
+
+<body>
+    <script>
+        // Verificar se o usuário está logado
+        fetch('php/check_session.php')
+            .then(response => response.json())
+            .then(data => {
+                if (!data.loggedin) {
+                    alert('Você precisa estar logado para acessar esta página.');
+                    window.location.href = 'login.html';
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao verificar sessão:', error);
+                window.location.href = 'login.html';
+            });
+    </script>
+    <div id="sidebar"></div>
+    <script src="scripts/sidebar.js"></script>
+
+    <div class="main-content">
+        <h1 class="title">Gerenciar Peças de Equipamentos</h1>
+        <p class="subtitle">Visualize e gerencie todas as peças cadastradas</p>
+
+        <div class="actions">
+            <button id="addPieceBtn" class="btn-primary">Adicionar Peça</button>
+        </div>
+
+        <div class="table-container">
+            <table id="piecesTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome da Peça</th>
+                        <th>Equipamentos Associados</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="piecesTableBody">
+                    <!-- Dados serão carregados via PHP/AJAX -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal para adicionar/editar peça -->
+    <div id="pieceModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Adicionar Peça</h2>
+            <form id="pieceForm">
+                <input type="hidden" id="pieceId" name="id">
+                
+                <div class="form-group">
+                    <label for="pieceName">Nome da Peça:</label>
+                    <input type="text" id="pieceName" name="nome" required>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Salvar</button>
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para visualizar equipamentos que usam a peça -->
+    <div id="equipmentModal" class="modal">
+        <div class="modal-content large">
+            <span class="close">&times;</span>
+            <h2 id="equipmentModalTitle">Equipamentos que usam esta peça</h2>
+            <div id="equipmentList">
+                <!-- Lista de equipamentos será carregada via AJAX -->
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/pecas.js"></script>
+</body>
+
+<footer>
+    <div id="footer"></div>
+    <script>
+        fetch('elements/footer.html')
+            .then(res => res.text())
+            .then(html => document.getElementById('footer').innerHTML = html);
+    </script>
+</footer>
+
+</html>
+

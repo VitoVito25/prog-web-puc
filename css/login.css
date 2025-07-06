@@ -1,0 +1,248 @@
+@import url("common/import.css");
+
+/* Reset e configurações básicas do body */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--fonte-principal, Arial, sans-serif);
+    background-color: var(--cor-fundo, #f4f4f4);
+    color: var(--cor-preto, #333);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Estilo para o logo */
+.logo {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 200px;
+    height: auto;
+    z-index: 10;
+}
+
+/* Container do modal centralizado */
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%; /* Adicionado para garantir que o modal ocupe a largura total */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Formulário principal */
+form#loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding: 40px 32px 32px 32px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    gap: 16px;
+    min-width: 400px;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Título principal */
+form#loginForm h1.title {
+    font-size: 2.5rem;
+    margin: 0 0 8px 0;
+    color: var(--cor-primaria, #6C3483);
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Subtítulo */
+form#loginForm p.subtitle {
+    font-size: 1.1rem;
+    color: var(--cor-preto, #666);
+    margin: 0 0 24px 0;
+    text-align: center;
+}
+
+/* Labels dos campos */
+form#loginForm label {
+    align-self: flex-start;
+    margin-top: 8px;
+    margin-bottom: 4px;
+    font-weight: 600;
+    color: var(--cor-preto, #333);
+    font-size: 14px;
+    width: 100%;
+}
+
+/* Campos de input */
+form#loginForm input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e1e1e1;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+    background-color: #fafafa;
+}
+
+form#loginForm input:focus {
+    border-color: var(--cor-primaria, #6C3483);
+    outline: none;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(108, 52, 131, 0.1);
+}
+
+form#loginForm input:hover {
+    border-color: var(--cor-primaria, #6C3483);
+    background-color: white;
+}
+
+/* Botão de submit */
+form#loginForm button {
+    margin-top: 24px;
+    padding: 14px 32px;
+    background: var(--cor-primaria, #6C3483);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+form#loginForm button:hover {
+    background: var(--cor-selecao, #8e44ad);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(108, 52, 131, 0.3);
+}
+
+form#loginForm button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(108, 52, 131, 0.3);
+}
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+}
+
+/* Responsividade para dispositivos móveis */
+@media (max-width: 768px) {
+    .logo {
+        top: 20px;
+        max-width: 150px;
+    }
+    
+    .modal {
+        padding: 10px;
+        min-height: calc(100vh - 60px);
+        margin-top: 60px;
+    }
+    
+    form#loginForm {
+        min-width: unset;
+        max-width: unset;
+        width: 100%;
+        padding: 32px 24px 24px 24px;
+        margin: 20px 0;
+    }
+    
+    form#loginForm h1.title {
+        font-size: 2rem;
+    }
+    
+    form#loginForm p.subtitle {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    form#loginForm {
+        padding: 24px 20px 20px 20px;
+    }
+    
+    form#loginForm h1.title {
+        font-size: 1.8rem;
+    }
+    
+    form#loginForm input {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+    
+    form#loginForm button {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+}
+
+/* Animação de entrada suave */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+form#loginForm {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* Estados de validação */
+form#loginForm input:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: #e74c3c;
+    background-color: #fdf2f2;
+}
+
+form#loginForm input:valid:not(:focus):not(:placeholder-shown) {
+    border-color: #27ae60;
+    background-color: #f2fdf2;
+}
+
+
+
+/* Estilo para o botão Voltar */
+.back-button {
+    display: block;
+    margin-top: 16px;
+    padding: 10px 24px;
+    background: #f0f0f0;
+    color: var(--cor-primaria, #6C3483);
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.back-button:hover {
+    background: #e0e0e0;
+    color: var(--cor-selecao, #b18be7);
+}
+
+

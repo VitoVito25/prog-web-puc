@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Equipamentos - Vito's Form</title>
+    <link rel="stylesheet" href="css/common/import.css" type="text/css">
+    <link rel="stylesheet" href="css/equipamentos.css" type="text/css">
+    <link rel="icon" type="image/icon" href="img/favicon.ico">
+</head>
+
+<body>
+    <script>
+        // Verificar se o usuário está logado
+        fetch('php/check_session.php')
+            .then(response => response.json())
+            .then(data => {
+                if (!data.loggedin) {
+                    alert('Você precisa estar logado para acessar esta página.');
+                    window.location.href = 'login.html';
+                }
+            })
+            .catch(error => {
+                console.error('Erro ao verificar sessão:', error);
+                window.location.href = 'login.html';
+            });
+    </script>
+    <div id="sidebar"></div>
+    <script src="scripts/sidebar.js"></script>
+
+    <div class="main-content">
+        <h1 class="title">Gerenciar Equipamentos</h1>
+        <p class="subtitle">Visualize e gerencie todos os equipamentos cadastrados</p>
+
+        <div class="actions">
+            <button id="addEquipmentBtn" class="btn-primary">Adicionar Equipamento</button>
+        </div>
+
+        <div class="equipment-grid" id="equipmentGrid">
+            <!-- Cards de equipamentos serão carregados via JavaScript -->
+        </div>
+    </div>
+
+    <!-- Modal para adicionar/editar equipamento -->
+    <div id="equipmentModal" class="modal">
+        <div class="modal-content large">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Adicionar Equipamento</h2>
+            <form id="equipmentForm" enctype="multipart/form-data">
+                <input type="hidden" id="equipmentId" name="id">
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="equipmentName">Nome do Equipamento:</label>
+                        <input type="text" id="equipmentName" name="nome" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="equipmentType">Tipo:</label>
+                        <select id="equipmentType" name="tipo" required>
+                            <option value="">Selecione o tipo</option>
+                            <option value="Notebook">Notebook</option>
+                            <option value="Macbook">Macbook</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="equipmentSerial">Serial:</label>
+                        <input type="text" id="equipmentSerial" name="serial" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="equipmentClient">Cliente:</label>
+                        <select id="equipmentClient" name="id_cliente" required>
+                            <option value="">Selecione o cliente</option>
+                            <!-- Opções carregadas via JavaScript -->
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="equipmentTechnician">Técnico:</label>
+                        <select id="equipmentTechnician" name="id_tecnico" required>
+                            <option value="">Selecione o técnico</option>
+                            <!-- Opções carregadas via JavaScript -->
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="equipmentImage">Imagem:</label>
+                        <input type="file" id="equipmentImage" name="imagem" accept="image/*">
+                        <div id="imagePreview"></div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="equipmentPieces">Peças:</label>
+                    <div id="piecesContainer" class="pieces-container">
+                        <!-- Checkboxes de peças carregadas via JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Salvar</button>
+                    <button type="button" class="btn-secondary" onclick="closeModal()">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal para visualizar detalhes do equipamento -->
+    <div id="viewModal" class="modal">
+        <div class="modal-content large">
+            <span class="close">&times;</span>
+            <h2 id="viewModalTitle">Detalhes do Equipamento</h2>
+            <div id="equipmentDetails">
+                <!-- Detalhes serão carregados via JavaScript -->
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn-secondary" onclick="closeViewModal()">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/equipamentos.js"></script>
+</body>
+
+<footer>
+    <div id="footer"></div>
+    <script>
+        fetch('elements/footer.html')
+            .then(res => res.text())
+            .then(html => document.getElementById('footer').innerHTML = html);
+    </script>
+</footer>
+
+</html>
+

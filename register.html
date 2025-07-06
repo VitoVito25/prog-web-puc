@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vito's Register Form</title>
+    <link rel="icon" type="image/icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="css/common/import.css" type="text/css">
+    <link rel="stylesheet" href="css/register.css" type="text/css">
+    <link rel="stylesheet" href="css/password-validation.css" type="text/css">
+</head>
+
+<body>
+    <img src="img/logo.png" alt="logo" class="logo">
+    <div class="modal">
+        <form id="registerForm" action="php/register_process.php" method="POST">
+            <h1 class="title">Cadastro</h1>
+            <p class="subtitle">Crie sua conta</p>
+
+            <label for="name">Nome</label>
+            <input type="text" id="name" name="nome" required>
+
+            <label for="login">Login</label>
+            <input type="text" id="login" name="login" required>
+
+            <label for="password">Senha</label>
+            <input type="password" id="password" name="senha" required>
+
+            <button type="submit">Cadastrar</button>
+            <a href="index.html" class="back-button">Voltar</a>
+        </form>
+    </div>
+
+    <!-- Scripts de validação -->
+    <script src="scripts/password-validation.js"></script>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch(this.action, {
+                method: this.method,
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                if (data.includes("sucesso")) {
+                    window.location.href = "login.html";
+                }
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                alert('Ocorreu um erro ao tentar cadastrar.');
+            });
+        });
+    </script>
+</body>
+
+<footer>
+    <div id="footer"></div>
+    <script>
+        fetch(\'elements/footer.html\')
+            .then(res => res.text())
+            .then(html => document.getElementById(\'footer\').innerHTML = html);
+    </script>
+</footer>
+
+</html>
+
