@@ -1,0 +1,77 @@
+@import url('import.css');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--fonte-principal, Arial, sans-serif);
+    background-color: var(--cor-fundo, #f4f4f4);
+    color: var(--cor-preto, #333);
+}
+
+div > h1.title,
+div > p.subtitle,
+div > form,
+div > #result {
+    text-align: center;
+}
+
+div > h1.title {
+    padding-top: 30px;
+    font-size: 2.5rem;
+    margin: 24px 0;
+    color: var(--cor-primaria, #6C3483);
+}
+
+div > p.subtitle {
+    font-size: 1.2rem;
+    color: var(--cor-preto, #333);
+    margin-bottom: 32px;
+}
+
+form#userForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+    padding-top: 16px;
+    padding-bottom: 24px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    gap: 12px;
+    min-width: 480px;
+    max-width: 620px;
+    margin: 0 auto;
+}
+
+form#userForm label {
+    margin-top: 8px;
+    font-size: 24px;
+    font-weight: semibold;
+    color: var(--cor-primaria, #333);
+}
+
+form#userForm p {
+    font-size: 16px;
+    color: var(--cor-preto, #333);
+    margin-top: 8px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+form#userForm button {
+    margin-top: 16px;
+    padding: 10px 24px;
+    background: var(--cor-primaria, #6C3483);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+form#userForm button:hover {
+    background: var(--cor-selecao, #b18be7);
+    color: var(--cor-preto, #fff);
+    font-weight: bold;
+}

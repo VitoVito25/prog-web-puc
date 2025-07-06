@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vito's Form</title>
+    <link rel="stylesheet" href="css/common/import.css" type="text/css">
+    <link rel="stylesheet" href="css/about.css" type="text/css">
+    <link rel="icon" type="image/icon" href="img/favicon.ico">
+</head>
+
+<body>
+
+    <div id="sidebar"></div>
+    <script src="scripts/sidebar.js"></script>
+
+    <div>
+        <h1 class="title">Victor Tomazoni Renaud</h1>
+        <p class="subtitle">Bem vindo a atividade 1 de fundamentos da programação web !!</p>
+
+        <form id="userForm">
+            <label for="name">Sobre mim</label>
+            <p for="name" class="infoH">
+                Sou estudante da PUC e estou aprendendo programação web. Este site faz parte da minha primeira atividade do módulo, onde aplico conhecimentos iniciais de HTML, CSS e JavaScript. Aqui, compartilho meu progresso e experiências nesse novo universo da tecnologia. A atividade inclui a criação de um formulário de contato, uma página inicial e uma seção "Sobre" para descrever minha jornada. Estou animado para continuar aprendendo e aprimorando minhas habilidades em programação web!
+            </p>
+
+            <button type="button" onclick="window.location.href='index.html'">Voltar a pagina inicial</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+</body>
+
+<footer>
+    <div id="footer"></div>
+    <script>
+        fetch('elements/footer.html')
+            .then(res => res.text())
+            .then(html => document.getElementById('footer').innerHTML = html);
+    </script>
+</footer>
+
+</html>

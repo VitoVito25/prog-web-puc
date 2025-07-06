@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vito's Form</title>
+    <link rel="stylesheet" href="css/common/import.css" type="text/css">
+    <link rel="stylesheet" href="css/form.css" type="text/css">
+    <link rel="icon" type="image/icon" href="img/favicon.ico">
+</head>
+
+<div id="modalContainer"></div>
+<script>
+    fetch('elements/modal.html')
+        .then(res => res.text())
+        .then(html => document.getElementById('modalContainer').innerHTML = html);
+</script>
+
+<body>
+
+    <div id="sidebar"></div>
+    <script src="scripts/sidebar.js"></script>
+
+    <div>
+        <h1 class="title">Formulario para contato</h1>
+        <p class="subtitle">Vamos precisar de algumas informações para contato</p>
+
+        <form id="userForm" method="get">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="age">Idade:</label>
+            <input type="number" id="age" name="age" min="0" required>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <script src="scripts/modal.js"></script>
+
+</body>
+
+<footer>
+    <div id="footer"></div>
+    <script>
+        fetch('elements/footer.html')
+            .then(res => res.text())
+            .then(html => document.getElementById('footer').innerHTML = html);
+    </script>
+</footer>
+
+</html>

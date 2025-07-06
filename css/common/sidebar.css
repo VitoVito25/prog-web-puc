@@ -1,0 +1,38 @@
+@import url('root.css');
+
+
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: var(--cor-fundo);
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto;
+    width: 85px;
+    height: 100px;
+    padding: 20px;
+}
+
+.sidebar a {
+    display: block;
+    color: black;
+    font-family: var(--fonte-principal);
+    font-size: 16px;
+    padding: 16px;
+    text-decoration: none;
+}
+.sidebar a.active {
+    background-color: var(--cor-primaria);
+    font-weight: bold;
+    color: white;
+}
+.sidebar a:hover:not(.active) {
+    background-color: var(--cor-selecao);
+    font-weight: bold;
+}

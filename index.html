@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vito's Form</title>
+    <link rel="stylesheet" href="css/common/import.css" type="text/css">
+    <link rel="stylesheet" href="css/index.css" type="text/css">
+    <link rel="icon" type="image/icon" href="img/favicon.ico">
+</head>
+
+<body>
+
+    <div id="sidebar"></div>
+    <script src="scripts/sidebar.js"></script>
+
+    <div>
+        <h1 class="title">Victor Tomazoni Renaud</h1>
+        <p class="subtitle">Bem vindo a atividade 1 de fundamentos da programação web !!</p>
+
+        <form id="userForm">
+            <label for="name">Pagina inicial:</label>
+            <p for="name" class="infoH">
+                Neste exemplo você poderá enviar alguns dados para contato, desfrutar da linda comunicção visual do site ou navegar para uma das outras paginas pelo menu lateral
+            </p>
+
+            <button type="button" onclick="window.location.href='form.html'">Entrar em contato</button>
+        </form>
+
+        <div id="result"></div>
+    </div>
+
+</body>
+
+<footer>
+    <div id="footer"></div>
+    <script>
+        fetch('elements/footer.html')
+            .then(res => res.text())
+            .then(html => document.getElementById('footer').innerHTML = html);
+    </script>
+</footer>
+
+</html>
